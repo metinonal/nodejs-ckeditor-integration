@@ -44,6 +44,7 @@ This project was made using the follow technologies:
 
 - CKEditor Integration
 - Setting up an External Image Upload Module (e.g., CKBox)
+- Detailed information has been provided within the code using comment lines.
   
 # :construction_worker: How to run
 ## Install
