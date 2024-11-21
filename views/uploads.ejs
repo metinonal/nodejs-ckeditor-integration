@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function selectFile(fileName) {
+            // URL'den inputId'yi al
+            const urlParams = new URLSearchParams(window.location.search);
+            const inputId = urlParams.get('inputId');
+
+            if (inputId) {
+                // Dosya adını input alanına yaz
+                window.opener.document.getElementById(inputId).value = fileName;
+            }
+
+            // Pencereyi kapat
+            window.close();
+        }
+
+        function selectFile(fileName) {
+            // File adının tam yolunu almak yerine sadece dosya adını ve uzantısını döndür
+            const urlParams = new URLSearchParams(window.location.search);
+            const inputId = urlParams.get('inputId');
+            const funcNum = new URLSearchParams(window.location.search).get('CKEditorFuncNum');
+            
+            if (funcNum) {
+                // CKEditor kullanımı için
+                window.opener.CKEDITOR.tools.callFunction(funcNum, fileName);
+            } if (inputId) {
+                // Dosya adını input alanına yaz
+                window.opener.document.getElementById(inputId).value = fileName;
+            }
+            window.close();
+        }
+
+        function deleteFile(fileName) {
+            if (confirm('Bu dosyayı silmek istediğinizden emin misiniz?')) {
+                fetch('/delete-file', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ fileName: fileName })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Dosya silinemedi');
+                        }
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Hata:', error);
+                        alert('Dosya silinirken bir hata oluştu');
+                    });
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="content-page">
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Iterate over each file and display it / Her dosya üzerinde iterasyon yap ve görüntüle -->
+                                <% files.forEach(function(file) { %>
+                                    <div class="col-md-3 image-container">
+                                        <div class="card">
+                                            <!-- Display image preview / Resim önizlemesini görüntüle -->
+                                            <img src="/uploads/<%= encodeURI(file) %>"
+                                                class="card-img-top image-preview" alt="<%= file %>">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%= file %>
+                                                </h5>
+                                                <button
+                                                    onclick="selectFile('/uploads/<%= encodeURI(file) %>')"
+                                                    class="btn btn-primary">
+                                                    Seç
+                                                </button>
+                                                <!-- Button to select the file / Dosyayı seçmek için buton -->
+                                                <!-- <a href="javascript:selectFile('/uploads/<%= encodeURI(file) %>')"
+                                                    class="btn btn-primary">Seç</a> -->
+                                                <!-- Button to delete the file / Dosyayı silmek için buton -->
+                                                <button onclick="deleteFile('<%= file %>')"
+                                                    class="btn btn-danger">Sil</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
