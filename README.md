@@ -1,7 +1,9 @@
-![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)
-![Works on my machine](https://img.shields.io/badge/Works-on%20my%20machine-brightgreen)
-![License](https://img.shields.io/badge/License-MS--PL-blue)
-![Release](https://img.shields.io/badge/Release-v0.8.2727.39678-orange)
+<div align="center">
+    ![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)
+    ![Works on my machine](https://img.shields.io/badge/Works-on%20my%20machine-brightgreen)
+    ![License](https://img.shields.io/badge/License-MS--PL-blue)
+    ![Release](https://img.shields.io/badge/Release-v1.0-orange)
+</div>
 
 <div align="center">
   <sub>The documentation project. Built with ❤︎ by
