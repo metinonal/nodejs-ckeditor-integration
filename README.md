@@ -1,10 +1,13 @@
-![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)
-![Works on my machine](https://img.shields.io/badge/Works-on%20my%20machine-brightgreen)
-![License](https://img.shields.io/badge/License-MS--PL-blue)
-![Release](https://img.shields.io/badge/Release-v1.0-orange)
+<p align="center">
+  <img src="https://img.shields.io/badge/Build-Passing-brightgreen" alt="Build Status" />
+  <img src="https://img.shields.io/badge/Works-on%20my%20machine-brightgreen" alt="Works on my machine" />
+  <img src="https://img.shields.io/badge/License-MIT-blue" alt="License" />
+  <img src="https://img.shields.io/badge/Release-v1.0-orange" alt="Release" />
+</p>
+
 
 <div align="center">
-  <sub>The documentation project. Built with ❤︎ by
+  <sub>This project. Build with ❤︎ by
     <a href="https://github.com/metinonal">Metin Önal</a>
   </sub>
 </div>
@@ -28,22 +31,19 @@
 
 # :eyes: Demo Website
 👉  demo: https://pr1.metinonal.com.tr/ <br />
-👉  username: admin <br />
-👉  password: admin
 
 # :computer: Technologies
 This project was made using the follow technologies:
 <ul>
   <li><a href="https://nodejs.org/en/">Node.js</a></li>
   <li><a href="https://expressjs.com/">Express</a></li>
-  <li><a href="https://github.com/mysqljs/mysql">Mysql</a></li>
+  <li><a href="https://ckeditor.com/">CKEditor</a></li>
 </ul>   
 
 # :rocket: Features
 
-- List Documents and Details
-- CRUD Admin Panel
-- User Login
+- CKEditor Integration
+- Setting up an External Image Upload Module (e.g., CKBox)
   
 # :construction_worker: How to run
 ## Install
@@ -54,14 +54,14 @@ npm install
 ## Usage
 
 ```sh
-npm run start
+node app.js
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 # :bug: Issues
 
-Feel free to **file a new issue** with a respective title and description on the the [NodeJS Documentation Project](https://github.com/metinonal/nodejs-documentation-project/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
+Feel free to **file a new issue** with a respective title and description on the the [NodeJS CKEditor Integration](https://github.com/metinonal/nodejs-ckeditor-integration/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
 
 # :tada: Contributing
 First of all, thank you for being interested in helping out, your time is always appreciated in every way. :100:
