@@ -1,5 +1,5 @@
 // Import required modules
-const multer = require('multer'); // Middleware for handling multipart/form-data, primarily used for uploading files
+const multer = require('multer'); // Middleware for handling multipart/form-data
 const path = require('path'); // Module for handling and transforming file paths
 const fs = require('fs'); // File system module for interacting with the file system
 
@@ -17,8 +17,21 @@ const storage = multer.diskStorage({
     }
 });
 
-// Initialize Multer with the storage configuration
-const upload = multer({ storage: storage });
+// File filter to allow only image and GIF files
+const fileFilter = (req, file, cb) => {
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (allowedMimeTypes.includes(file.mimetype)) {
+        cb(null, true); // Accept file
+    } else {
+        cb(new Error('Invalid file type. Only images and GIFs are allowed.'), false); // Reject file
+    }
+};
+
+// Initialize Multer with the storage configuration and file filter
+const upload = multer({ 
+    storage: storage,
+    fileFilter: fileFilter
+});
 
 // Check if the uploads directory exists; create it if not
 const uploadsDir = path.join(__dirname, '../public/uploads'); // Path to the uploads directory
@@ -37,7 +50,7 @@ exports.uploadFile = upload.single('upload'); // Field name for the file is 'upl
 // Handle the file upload and return a response for CKEditor integration
 exports.uploadFileHandler = (req, res) => {
     if (!req.file) {
-        return res.status(400).send('No file uploaded.'); // Send error if no file is uploaded
+        return res.status(400).send('No file uploaded or invalid file type.'); // Send error if no file is uploaded
     }
     const fileUrl = `/uploads/${req.file.filename}`; // Construct the file's URL
     const funcNum = req.query.CKEditorFuncNum; // Retrieve CKEditor function number from the query
